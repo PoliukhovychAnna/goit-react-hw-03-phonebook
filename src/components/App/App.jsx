@@ -26,6 +26,7 @@ export class App extends Component {
     if (savedContacts !== null) {
       const parsedContacts = JSON.parse(savedContacts);
       this.setState({ contacts: parsedContacts });
+      console.log(this.state.contacts);
       return;
     }
   }
@@ -62,13 +63,14 @@ export class App extends Component {
 
   filterValue = e => {
     this.setState({
-      filter: e.target.value,
+      filter: e.target.value.toLowerCase(),
     });
   };
 
   contactFilter = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
+    console.log(contacts);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
